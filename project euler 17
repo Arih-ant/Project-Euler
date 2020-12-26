@@ -1,0 +1,25 @@
+def num_letters_count(num):
+    #this function is valid upto 1000 , can be enhanced further easily for higher numbers
+    units_dict ={0:"",1:"one",2:"two",3:"three",4:"four",5:"five",6:"six",7:"seven",8:"eight",9:"nine"}
+    tens_dict = {0:"",2:"twenty",3:"thirty",4:"forty",5:"fifty",6:"sixty",7:"seventy",8:"eighty",9:"ninety"}
+    special_dict={10:"ten",11:"eleven",12:"twelve",13:"thirteen",14:"fourteen",15:"fifteen"
+                  ,16:"sixteen",17:"seventeen",18:"eighteen",19:"nineteen"}
+    num_letters=""
+    for n in range(1,num+1):
+        str_n=str(n)
+        if len(str_n)==1:
+            num_letters+=units_dict[int(str_n)]
+        elif len(str_n)==2:
+            if str_n[0]=='1':
+                num_letters+=special_dict[int(str_n)]
+            else:
+                num_letters+=tens_dict[int(str_n[0])]+units_dict[int(str_n[1])]
+        elif len(str_n)==3:
+            if str_n[1]=='1':
+                num_letters+=units_dict[int(str_n[0])]+"hundredand"+special_dict[int(str_n[1:])]
+            else :
+                num_letters+=units_dict[int(str_n[0])]+"hundredand"+tens_dict[int(str_n[1])]+units_dict[int(str_n[2])]
+        else:
+            num_letters+="onethousand"
+    return (len(num_letters)-27) #because 9 'and's were added for one hundred,two hundred......, hence subtracting 9*3
+num_letters_count(1000)
