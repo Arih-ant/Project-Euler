@@ -1,0 +1,9 @@
+import pandas as pd
+from datetime import date
+
+
+start = date(1901, 1, 1)
+end = date(2000, 12, 31)
+d = pd.date_range(start, end, freq='MS').strftime('%A')
+s = pd.Series(d)
+print(s.value_counts())
