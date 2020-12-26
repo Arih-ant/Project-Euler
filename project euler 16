@@ -1,0 +1,7 @@
+def power_digit_sum(n):
+    string = str(2**n) #int converted to str
+    sum_digit=0
+    for i in string:
+        sum_digit+=int(i) #str converted back to str and added to sum_digit
+    return sum_digit
+power_digit_sum(1000)   
