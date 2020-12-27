@@ -1,0 +1,16 @@
+def fibonacci_digit(n):
+    a=1 #F1
+    b=1 #F2
+    c=0
+    index=2 #a(F1) and b(F2) are the first two fibonacci numbers 
+    while True:
+        c=a+b
+        a=b
+        b=c
+        index+=1
+        print(c)
+        print(" ")
+        if len(str(c))==n:
+            return index
+        
+fibonacci_digit(1000)      
