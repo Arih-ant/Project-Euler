@@ -1,0 +1,17 @@
+def is_pthpower_digit(n,p):
+    a=0
+    for i in str(n):
+        a+=int(i)**p
+    return a==n
+
+def digit_5th_power():
+    start = 0
+    end   = 355000 #this is a trick, because 6*9^5<355000, We took this as the upperbound because for numbers above this the sum of power digits will be greater than the number.
+    sum_digit=0
+    for i in range(0,end):
+        if is_pthpower_digit(i,5):
+            print(i)
+            sum_digit+=i
+    return sum_digit-1
+digit_5th_power()
+        
