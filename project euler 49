@@ -1,0 +1,42 @@
+def is_prime(n):
+    if n==2:
+        return True
+    if n%2==0:
+        return False
+    
+    for i in range(3,int(n**0.5)+1):
+        if n%i==0:
+            return False
+    return True
+def prime_permutation():
+    from itertools import product
+    nums= '1234567890'
+    product = product(nums,repeat=4)
+    lst =[]
+    for i in product:
+        x =''
+        for j in i:
+            x+=j
+        lst += [x]
+    primes = []
+    for i in lst:
+        if is_prime(int(i)) and i[0]!='0':
+            primes.append(i)
+    prime_per=[]
+    for i in primes:
+        for j in primes[primes.index(i):]:
+            if sorted(i)==sorted(j) and i!=j :
+                prime_per+=[(i,j)]
+    primes_trip=[]
+    for a,b in prime_per:
+        for c,d in prime_per:
+            if b==c:
+                primes_trip+=[sorted([a,b,d])]
+    required_nums = [] 
+    for a,b,c in primes_trip:
+        if int(b)-int(a)==int(c)-int(b):
+            required_nums+=[(a,b,c)]
+    
+    return required_nums
+    
+prime_permutation()
