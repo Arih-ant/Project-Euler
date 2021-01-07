@@ -1,0 +1,41 @@
+def is_prime(n):
+    if n==2:
+        return True
+    if n%2==0:
+        return False
+    
+    for i in range(3,int(n**0.5)+1):
+        if n%i==0:
+            return False
+    return True
+def pandigital_prime():
+    from itertools import permutations as pt
+    nums = "1 2 3 4 5 6 7 8 9".split()
+    couples =[]
+    for number in range(len(nums)):     #finding max digits of a pandigit num that cannot be divisible by 3
+        nums_i=nums[:number+1]
+        sum_num = 0
+        for i in nums_i:
+            sum_num+=int(i)
+        if sum_num%3!=0:
+            couples+=[(nums[number],sum_num)]
+    max_digit_num = int(couples[-1][0])
+    max_pandigit = ''
+    for i in nums[:max_digit_num]:
+        max_pandigit+=i
+    perms = pt(max_pandigit)
+    primes = []
+    nums_consider = []
+    for i in perms:
+        x = ''
+        for j in i:
+            x += j
+        nums_consider+=[int(x)]
+    for i in nums_consider:
+        if is_prime(i):
+            primes+=[i]
+    return max(primes)
+   
+            
+    
+pandigital_prime()
