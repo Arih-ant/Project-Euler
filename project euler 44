@@ -10,7 +10,7 @@ def pentagon():
     num = [1]
     n =2
     required_nums =[]
-    while n<True:
+    while n<10000:
         new = n*(3*n-1)/2
         for i in num:
             if is_pentagonal_num(i+new) and is_pentagonal_num(new-i):
