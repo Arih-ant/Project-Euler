@@ -1,0 +1,47 @@
+def is_prime(n):
+    if n==2:
+        return True
+    if n%2==0:
+        return False
+    
+    for i in range(3,int(n**0.5)+1):
+        if n%i==0:
+            return False
+    return True
+def prime_factors(n):
+    lst=[]
+    if n==0:
+        return
+    for i in range(2,int(n**0.5)):
+        if n%i==0 and is_prime(i):
+            lst+=[i]
+    if len(lst)==3:    
+        for i in range(int(n**0.5),int(n/lst[0]/lst[1]/lst[2])):
+            if is_prime(n/i) and n/i > 1:
+                lst+=[int(n/i)]
+                break
+                
+    # there can be only one prime factor above the sqrt
+    return len(set(lst))
+def distinct_factors():
+    nums=[]
+    a=2*3*5*13 #fourth num with 4 different prime factors
+    while True:
+        print(a)
+        if prime_factors(a)>=4 and prime_factors(a+1)>=4 and prime_factors(a+2)>=4 and prime_factors(a+3)>=4:
+            nums+=[(a,a+1,a+2,a+3)]
+            break
+            
+        elif prime_factors(a+1)>=4 and prime_factors(a+2)>=4 and prime_factors(a+3)>=4:
+            a+=1
+        elif prime_factors(a+2)>=4 and prime_factors(a+3)>=4:
+            a+=2
+        elif prime_factors(a+3)>=4:
+            a+=3
+        else:
+            a+=4
+    return nums
+import time
+start = time.time()
+distinct_factors()
+print(time.time()-start)
