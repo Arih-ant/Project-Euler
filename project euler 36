@@ -1,0 +1,12 @@
+def is_palindrome(n):
+    if str(n)==str(n)[::-1]:
+        return True
+    return False
+def double_base_palindrome(max_num):
+    sum_nums =0
+    
+    for n in range(max_num):    
+        if is_palindrome(n) and is_palindrome(bin(n)[2:]):
+            sum_nums+=n
+    return sum_nums
+double_base_palindrome(1000000)
